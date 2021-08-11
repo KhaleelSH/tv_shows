@@ -20,24 +20,24 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/logo.png'),
-            SizedBox(height: 48),
+            const SizedBox(height: 48),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Email',
                 labelStyle: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
                 ),
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Password',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 16,
                 ),
@@ -45,12 +45,12 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     setState(() => _isObscurePassword = !_isObscurePassword);
                   },
-                  icon: Icon(Icons.remove_red_eye_outlined),
+                  icon: const Icon(Icons.remove_red_eye_outlined),
                 ),
               ),
               obscureText: _isObscurePassword,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
                 SizedBox(
@@ -65,21 +65,21 @@ class _LoginPageState extends State<LoginPage> {
                         Theme.of(context).primaryColor),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 GestureDetector(
                   onTap: () {
                     setState(() => _rememberMe = !_rememberMe);
                   },
-                  child: Text('Remember me'),
+                  child: const Text('Remember me'),
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextButton(
               onPressed: () {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const <Widget>[
                   Text(
                     'LOG IN',
                     style: TextStyle(
