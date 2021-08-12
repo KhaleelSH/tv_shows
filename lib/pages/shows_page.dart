@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tv_shows/pages/login_page.dart';
 import 'package:tv_shows/widgets/show_tile.dart';
 
 class ShowsPage extends StatelessWidget {
@@ -8,20 +9,18 @@ class ShowsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        primary: true,
-        backgroundColor: Colors.transparent,
         centerTitle: false,
-        title: const Text(
+        title: Text(
           'Shows',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headline1,
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                  (route) => false);
+            },
             icon: const Icon(Icons.exit_to_app),
           ),
         ],
@@ -30,7 +29,9 @@ class ShowsPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         itemCount: 10,
         itemBuilder: (context, i) {
-          return const ShowTile();
+          return ShowTile(
+            onTap: () {},
+          );
         },
         separatorBuilder: (context, i) {
           return const SizedBox(height: 8);
