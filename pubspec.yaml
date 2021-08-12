@@ -1,5 +1,5 @@
 name: tv_shows
-description: A new Flutter project.
+description: A simple app that helps you keep track of shows and episodes you watched.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -28,3 +28,6 @@ flutter:
         - asset: assets/fonts/Karla-Regular.ttf
         - asset: assets/fonts/Karla-Bold.ttf
           weight: 700
+    - family: TVShowsIcons
+      fonts:
+        - asset: assets/fonts/icons/TVShowsIcons.ttf
