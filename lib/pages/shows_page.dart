@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows/pages/login_page.dart';
+import 'package:tv_shows/pages/show_details_page.dart';
 import 'package:tv_shows/widgets/show_tile.dart';
 
 class ShowsPage extends StatelessWidget {
@@ -31,7 +32,10 @@ class ShowsPage extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, i) {
           return ShowTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const ShowDetailsPage()));
+            },
           );
         },
         separatorBuilder: (context, i) {

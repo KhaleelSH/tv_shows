@@ -27,6 +27,8 @@ abstract class AppTheme {
       splashColor: theme.primarySwatch.shade100,
       highlightColor: theme.primarySwatch.shade100,
       appBarTheme: theme.appBarTheme,
+      floatingActionButtonTheme:
+          FloatingActionButtonThemeData(backgroundColor: theme.primarySwatch),
     );
   }
 }
@@ -73,9 +75,18 @@ class AppThemeLight extends AppTheme {
           fontWeight: FontWeight.bold,
           color: Color(AppColors.primaryBlack()),
         ),
+        headline2: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Color(AppColors.primaryBlack()),
+        ),
         headline3: TextStyle(
           fontSize: 20,
           color: Color(AppColors.darkGrey()),
+        ),
+        bodyText1: const TextStyle(
+          fontSize: 16,
+          color: Color(0xFF505050),
         ),
       );
 
