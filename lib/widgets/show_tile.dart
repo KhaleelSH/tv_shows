@@ -27,6 +27,13 @@ class ShowTile extends StatelessWidget {
                 'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
                 width: 64,
                 height: 90,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    'assets/images/image_placeholder_episodes.png',
+                    height: 90,
+                    width: 64,
+                  );
+                },
               ),
             ),
           ),
