@@ -1,6 +1,6 @@
 # tv_shows
 
-A new Flutter project.
+A simple app that helps you keep track of shows and episodes you watched.
 
 ## Getting Started
 
