@@ -22,6 +22,7 @@ class ShowsPage extends StatelessWidget {
                   (route) => false);
             },
             icon: const Icon(Icons.exit_to_app),
+            tooltip: 'Logout',
           ),
         ],
       ),
