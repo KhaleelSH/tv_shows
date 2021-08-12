@@ -14,6 +14,8 @@ abstract class AppTheme {
 
   TextTheme get textTheme;
 
+  AppBarTheme get appBarTheme;
+
   static ThemeData from({required AppTheme theme}) {
     return ThemeData(
       primarySwatch: theme.primarySwatch,
@@ -22,6 +24,9 @@ abstract class AppTheme {
       brightness: theme.brightness,
       inputDecorationTheme: theme.inputDecorationTheme,
       textTheme: theme.textTheme,
+      splashColor: theme.primarySwatch.shade100,
+      highlightColor: theme.primarySwatch.shade100,
+      appBarTheme: theme.appBarTheme,
     );
   }
 }
@@ -62,5 +67,21 @@ class AppThemeLight extends AppTheme {
       );
 
   @override
-  TextTheme get textTheme => const TextTheme();
+  TextTheme get textTheme => TextTheme(
+        headline1: TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: Color(AppColors.primaryBlack()),
+        ),
+        headline3: TextStyle(
+          fontSize: 20,
+          color: Color(AppColors.darkGrey()),
+        ),
+      );
+
+  @override
+  AppBarTheme get appBarTheme => const AppBarTheme(
+        color: Colors.transparent,
+        elevation: 0,
+      );
 }

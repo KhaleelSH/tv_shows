@@ -7,6 +7,8 @@
 // Usually, I would do it something like the code block commented at the top.
 enum AppColors {
   primaryColor,
+  primaryBlack,
+  darkGrey,
 }
 
 extension AppColorsExtension on AppColors {
@@ -14,6 +16,10 @@ extension AppColorsExtension on AppColors {
     switch (this) {
       case AppColors.primaryColor:
         return 0xFFFF758C;
+      case AppColors.primaryBlack:
+        return 0xFF2E2E2E;
+      case AppColors.darkGrey:
+        return 0xFF505050;
     }
   }
 }
