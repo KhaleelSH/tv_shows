@@ -37,9 +37,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: const InputDecoration(
                 labelText: 'Email',
               ),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 final _emailRegExp = RegExp(
@@ -131,14 +129,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Text(
-                    'LOG IN',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
+                  Text('LOG IN'),
                 ],
               ),
               style: TextButton.styleFrom(
