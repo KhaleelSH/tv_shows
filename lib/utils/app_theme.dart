@@ -84,9 +84,14 @@ class AppThemeLight extends AppTheme {
           fontSize: 20,
           color: Color(AppColors.darkGrey()),
         ),
-        bodyText1: const TextStyle(
+        bodyText1: TextStyle(
           fontSize: 16,
-          color: Color(0xFF505050),
+          color: Color(AppColors.darkGrey()),
+        ),
+        caption: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: Color(AppColors.darkGrey()),
         ),
       );
 
