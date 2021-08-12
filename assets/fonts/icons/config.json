@@ -1,0 +1,24 @@
+{
+  "name": "TVShowsIcons",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "c19ced34afef9d068fc33561d4d93642",
+      "css": "message-circle",
+      "code": 59392,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M85.5 861.8L159.4 640.3A390.9 390.9 0 0 1 125 479.2 395.8 395.8 0 0 1 343.8 125.3 391 391 0 0 1 520.8 83.3L543.9 83.3A395.4 395.4 0 0 1 916.7 458.3V479.2A390.7 390.7 0 0 1 875 656.2 395.8 395.8 0 0 1 520.8 875 391 391 0 0 1 359.7 840.7L138.3 914.5A42.2 42.2 0 0 1 125 916.7 41.7 41.7 0 0 1 85.5 861.8Z",
+        "width": 1000
+      },
+      "search": [
+        "message-circle"
+      ]
+    }
+  ]
+}
