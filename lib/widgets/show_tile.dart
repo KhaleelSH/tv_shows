@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tv_shows/utils/app_colors.dart';
 
 class ShowTile extends StatelessWidget {
   const ShowTile({Key? key, required this.onTap}) : super(key: key);
@@ -14,9 +15,9 @@ class ShowTile extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: const Color(0xFFEEF1F5),
+              color: Color(AppColors.mystic()),
               border: Border.all(
-                color: const Color(0xFFEEF1F5),
+                color: Color(AppColors.mystic()),
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(4),
