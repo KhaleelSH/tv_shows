@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tv_shows/utils/app_colors.dart';
 
 class ShowTile extends StatelessWidget {
-  const ShowTile({Key? key, required this.onTap}) : super(key: key);
+  const ShowTile({Key? key, required this.onTap, required this.name})
+      : super(key: key);
 
   final VoidCallback onTap;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +26,20 @@ class ShowTile extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.network(
-                'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
-                width: 64,
-                height: 90,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                    'assets/images/image_placeholder_episodes.png',
-                    height: 90,
-                    width: 64,
-                  );
-                },
+              child: Hero(
+                tag: 'show_$name',
+                child: Image.network(
+                  'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
+                  width: 64,
+                  height: 90,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      'assets/images/image_placeholder_episodes.png',
+                      height: 90,
+                      width: 64,
+                    );
+                  },
+                ),
               ),
             ),
           ),

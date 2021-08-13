@@ -7,7 +7,8 @@ import 'package:tv_shows/widgets/back_button_app_bar.dart';
 import 'package:tv_shows/widgets/episode_tile.dart';
 
 class ShowDetailsPage extends StatelessWidget {
-  const ShowDetailsPage({Key? key}) : super(key: key);
+  const ShowDetailsPage({Key? key, required this.name}) : super(key: key);
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +25,21 @@ class ShowDetailsPage extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Image.network(
-                        'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
-                        height: MediaQuery.of(context).size.height / 2,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            'assets/images/image_placeholder_episodes.png',
-                            height: MediaQuery.of(context).size.height / 2,
-                            width: double.infinity,
-                          );
-                        },
+                      Hero(
+                        tag: 'show_$name',
+                        child: Image.network(
+                          'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/image_placeholder_episodes.png',
+                              height: MediaQuery.of(context).size.height / 2,
+                              width: double.infinity,
+                            );
+                          },
+                        ),
                       ),
                       Positioned.fill(
                         bottom: -1,

@@ -32,9 +32,12 @@ class ShowsPage extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, i) {
           return ShowTile(
+            name: '$i',
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const ShowDetailsPage()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => ShowDetailsPage(
+                        name: '$i',
+                      )));
             },
           );
         },
