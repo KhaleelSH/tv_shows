@@ -23,9 +23,7 @@ class EpisodeTile extends StatelessWidget {
           const SizedBox(width: 12),
           const Text(
             'Episode Title',
-            style: TextStyle(
-              fontSize: 16,
-            ),
+            style: TextStyle(fontSize: 16),
           ),
         ],
       ),

@@ -49,12 +49,9 @@ class _AddEpisodePageState extends State<AddEpisodePage> {
             ),
           ],
         ),
-        middle: const Text(
+        middle: Text(
           'Add Episode',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 18),
         ),
         trailing: GestureDetector(
           onTap: () {
@@ -88,11 +85,10 @@ class _AddEpisodePageState extends State<AddEpisodePage> {
                       const SizedBox(height: 8),
                       Text(
                         'Upload Photo',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).primaryColor,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .button!
+                            .copyWith(color: Theme.of(context).primaryColor),
                       ),
                     ],
                   ),
