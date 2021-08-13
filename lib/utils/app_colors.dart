@@ -10,6 +10,7 @@ enum AppColors {
   primaryBlack,
   darkGrey,
   lightGrey,
+  lighterGrey,
   mystic,
 }
 
@@ -24,6 +25,8 @@ extension AppColorsExtension on AppColors {
         return 0xFF505050;
       case AppColors.lightGrey:
         return 0xFFA0A0A0;
+      case AppColors.lighterGrey:
+        return 0xFFEDEDED;
       case AppColors.mystic:
         return 0xFFEEF1F5;
     }
