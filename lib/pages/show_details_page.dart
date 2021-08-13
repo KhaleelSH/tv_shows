@@ -23,11 +23,11 @@ class ShowDetailsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Stack(
-                    children: [
-                      Hero(
-                        tag: 'show_$name',
-                        child: Image.network(
+                  Hero(
+                    tag: 'show_image_$name',
+                    child: Stack(
+                      children: [
+                        Image.network(
                           'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
                           height: MediaQuery.of(context).size.height / 2,
                           width: double.infinity,
@@ -40,23 +40,23 @@ class ShowDetailsPage extends StatelessWidget {
                             );
                           },
                         ),
-                      ),
-                      Positioned.fill(
-                        bottom: -1,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.white,
-                                Colors.transparent,
-                              ],
-                              begin: FractionalOffset.bottomCenter,
-                              end: FractionalOffset(0.5, 0.75),
+                        Positioned.fill(
+                          bottom: -1,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.white,
+                                  Colors.transparent,
+                                ],
+                                begin: FractionalOffset.bottomCenter,
+                                end: FractionalOffset(0.5, 0.75),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),

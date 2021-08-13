@@ -27,7 +27,7 @@ class ShowTile extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: Hero(
-                tag: 'show_$name',
+                tag: 'show_image_$name',
                 child: Image.network(
                   'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
                   width: 64,
