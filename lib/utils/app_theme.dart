@@ -61,11 +61,11 @@ class AppThemeLight extends AppTheme {
   Brightness get brightness => Brightness.light;
 
   @override
-  InputDecorationTheme get inputDecorationTheme => const InputDecorationTheme(
+  InputDecorationTheme get inputDecorationTheme => InputDecorationTheme(
         labelStyle: TextStyle(
-          fontWeight: FontWeight.normal,
-          fontSize: 16,
-        ),
+            fontWeight: FontWeight.normal,
+            fontSize: 16,
+            color: Color(AppColors.lightGrey())),
       );
 
   @override
