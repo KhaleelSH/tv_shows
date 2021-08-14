@@ -106,7 +106,8 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                                 if (provider
                                     .loadingCurrentSelectedShowDescription)
                                   const Center(
-                                      child: CircularProgressIndicator())
+                                      child:
+                                          CircularProgressIndicator.adaptive())
                                 else
                                   Text(
                                     provider.currentSelectedShowDescription ??
@@ -140,7 +141,8 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                                 ),
                                 if (provider.loadingCurrentSelectedShowEpisodes)
                                   const Center(
-                                      child: CircularProgressIndicator())
+                                      child:
+                                          CircularProgressIndicator.adaptive())
                                 else if (provider
                                     .currentSelectedShowEpisodes.isEmpty)
                                   Center(

@@ -81,7 +81,7 @@ class _ShowsPageState extends State<ShowsPage> {
         children: <Widget>[
           Image.asset('assets/images/image_placeholder_registration.png'),
           const SizedBox(height: 16),
-          const CircularProgressIndicator(),
+          const CircularProgressIndicator.adaptive(),
         ],
       ),
     );

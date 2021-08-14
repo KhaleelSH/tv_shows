@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
             Consumer<AuthProvider>(
               builder: (context, provider, child) {
                 if (provider.loggingIn) {
-                  return const CircularProgressIndicator();
+                  return const CircularProgressIndicator.adaptive();
                 }
                 return TextButton(
                   onPressed: _isLoginAllowed()

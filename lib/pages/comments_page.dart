@@ -62,7 +62,7 @@ class _CommentsPageState extends State<CommentsPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset('assets/images/image_placeholder_comments.png'),
-                  const CircularProgressIndicator(),
+                  const CircularProgressIndicator.adaptive(),
                 ],
               ),
             )
