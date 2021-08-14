@@ -194,7 +194,7 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => const AddEpisodePage(),
+            builder: (_) => AddEpisodePage(show: provider.currentSelectedShow!),
             fullscreenDialog: true,
           ));
         },

@@ -108,4 +108,28 @@ class ShowsProvider extends ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<String> uploadImage({required String filePath}) async {
+    try {
+      return await client.uploadImage(filePath);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> addNewEpisode({
+    required String showId,
+    required String mediaId,
+    required String title,
+    required String description,
+    required String episodeNumber,
+    required String seasonNumber,
+  }) async {
+    try {
+      return await client.addNewEpisode(
+          showId, mediaId, title, description, episodeNumber, seasonNumber);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

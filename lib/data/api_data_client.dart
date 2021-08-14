@@ -111,4 +111,41 @@ class ApiDataClient {
       throw e.response?.data['errors'][0] ?? 'Failed to post new comment!';
     }
   }
+
+  Future<String> uploadImage(String filePath) async {
+    try {
+      final formData =
+          FormData.fromMap({'file': await MultipartFile.fromFile(filePath)});
+      Response response = await _client.post('/media', data: formData);
+      return response.data['data']['_id'];
+    } on DioError catch (e) {
+      throw e.response?.data['errors'][0] ?? 'Failed to upload image!';
+    }
+  }
+
+  Future<void> addNewEpisode(
+    String showId,
+    String mediaId,
+    String title,
+    String description,
+    String episodeNumber,
+    String seasonNumber,
+  ) async {
+    try {
+      Response response = await _client.post(
+        '/episodes',
+        data: json.encode({
+          'showId': showId,
+          'mediaId': mediaId,
+          'title': title,
+          'description': description,
+          'episodeNumber': episodeNumber,
+          'season': seasonNumber,
+        }),
+      );
+      return response.data['data']['token'];
+    } on DioError catch (e) {
+      throw e.response?.data['errors'][0] ?? 'Failed to add new episode!';
+    }
+  }
 }
