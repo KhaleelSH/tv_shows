@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tv_shows/utils/app_colors.dart';
 
 const int _kDefaultSeasons = 30;
@@ -19,6 +22,7 @@ class _AddEpisodePageState extends State<AddEpisodePage> {
   final FocusNode _descriptionNode = FocusNode();
   int _season = 1;
   int _episode = 1;
+  File? _image;
 
   @override
   void dispose() {
@@ -70,40 +74,46 @@ class _AddEpisodePageState extends State<AddEpisodePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 64),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.camera_alt_outlined,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Upload Photo',
-                        style: Theme.of(context)
-                            .textTheme
-                            .button!
-                            .copyWith(color: Theme.of(context).primaryColor),
-                      ),
-                    ],
+            if (_image == null)
+              GestureDetector(
+                onTap: _showCameraOrPhotoLibrarySourcePicker,
+                child: Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 64),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera_alt_outlined,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Upload Photo',
+                          style: Theme.of(context)
+                              .textTheme
+                              .button!
+                              .copyWith(color: Theme.of(context).primaryColor),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
+              )
+            else
+              Image.file(
+                _image!,
+                height: MediaQuery.of(context).size.height / 3,
+                width: double.infinity,
+                fit: BoxFit.cover,
               ),
-            ),
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      _showSeasonAndEpisodePicker(context);
-                    },
+                    onTap: _showSeasonAndEpisodePicker,
                     child: Container(
                       color: Colors.white,
                       child: Column(
@@ -164,7 +174,53 @@ class _AddEpisodePageState extends State<AddEpisodePage> {
     );
   }
 
-  void _showSeasonAndEpisodePicker(BuildContext context) {
+  void _showCameraOrPhotoLibrarySourcePicker() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                onTap: () {
+                  _pickImageFromSource(ImageSource.camera);
+                  Navigator.of(context).pop();
+                },
+                title: const Text('Camera'),
+                leading: Icon(
+                  Icons.camera_alt_outlined,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              ListTile(
+                onTap: () {
+                  _pickImageFromSource(ImageSource.gallery);
+                  Navigator.of(context).pop();
+                },
+                title: const Text('Photo Library'),
+                leading: Icon(
+                  Icons.image,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _pickImageFromSource(ImageSource source) async {
+    final pickedFile = await ImagePicker().pickImage(source: source);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
+
+  void _showSeasonAndEpisodePicker() {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
