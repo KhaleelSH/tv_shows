@@ -109,7 +109,8 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                                       child: CircularProgressIndicator())
                                 else
                                   Text(
-                                    provider.currentSelectedShowDescription!,
+                                    provider.currentSelectedShowDescription ??
+                                        'No description',
                                     style:
                                         Theme.of(context).textTheme.bodyText1,
                                   ),
@@ -126,7 +127,7 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                                         .loadingCurrentSelectedShowEpisodes)
                                       Text(
                                         provider
-                                            .currentSelectedShowEpisodes!.length
+                                            .currentSelectedShowEpisodes.length
                                             .toString(),
                                         style: Theme.of(context)
                                             .textTheme
@@ -141,7 +142,7 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                                   const Center(
                                       child: CircularProgressIndicator())
                                 else if (provider
-                                    .currentSelectedShowEpisodes!.isEmpty)
+                                    .currentSelectedShowEpisodes.isEmpty)
                                   Center(
                                     child: Column(
                                       mainAxisAlignment:
@@ -160,7 +161,7 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                                   )
                                 else
                                   for (final episode
-                                      in provider.currentSelectedShowEpisodes!)
+                                      in provider.currentSelectedShowEpisodes)
                                     EpisodeTile(
                                       episode: episode,
                                       onTap: () {

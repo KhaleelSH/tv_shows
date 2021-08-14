@@ -15,7 +15,7 @@ class ShowsProvider extends ChangeNotifier {
   List<Show> _shows = [];
   Show? _currentSelectedShow;
   String? _currentSelectedShowDescription;
-  List<Episode>? _currentSelectedShowEpisodes;
+  List<Episode> _currentSelectedShowEpisodes = [];
 
   bool get loadingShows => _loadingShows;
 
@@ -31,8 +31,7 @@ class ShowsProvider extends ChangeNotifier {
 
   String? get currentSelectedShowDescription => _currentSelectedShowDescription;
 
-  List<Episode>? get currentSelectedShowEpisodes =>
-      _currentSelectedShowEpisodes;
+  List<Episode> get currentSelectedShowEpisodes => _currentSelectedShowEpisodes;
 
   Future<void> getShows({bool showLoading = true}) async {
     try {
@@ -57,7 +56,7 @@ class ShowsProvider extends ChangeNotifier {
   void clearCurrentSelectedShow() {
     _currentSelectedShow = null;
     _currentSelectedShowDescription = null;
-    _currentSelectedShowEpisodes = null;
+    _currentSelectedShowEpisodes = [];
   }
 
   Future<void> getShowDescription({bool showLoading = true}) async {

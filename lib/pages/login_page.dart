@@ -136,6 +136,9 @@ class _LoginPageState extends State<LoginPage> {
                 return TextButton(
                   onPressed: _isLoginAllowed()
                       ? () async {
+                          // To hide keyboard when sending the login request.
+                          _emailNode.unfocus();
+                          _passwordNode.unfocus();
                           try {
                             await Provider.of<AuthProvider>(context,
                                     listen: false)
