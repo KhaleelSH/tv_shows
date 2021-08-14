@@ -1,9 +1,9 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class LocalProvider {
+class LocalDataClient {
   final FlutterSecureStorage storage;
 
-  LocalProvider({required this.storage});
+  LocalDataClient({required this.storage});
 
   static const String _token = 'TOKEN';
 
