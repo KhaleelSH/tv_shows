@@ -99,4 +99,13 @@ class ShowsProvider extends ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<void> addNewComment(
+      {required String text, required String episodeId}) async {
+    try {
+      return await client.addNewComment(text, episodeId);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

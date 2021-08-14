@@ -91,11 +91,24 @@ class ApiDataClient {
 
   Future<List<Comment>> getEpisodeComments(String episodeId) async {
     try {
-      Response response =
-          await _client.get('/episodes/$episodeId/comments');
+      Response response = await _client.get('/episodes/$episodeId/comments');
       return Comment.fromJsonList(response.data['data']);
     } on DioError catch (e) {
       throw e.response?.data['errors'][0] ?? 'Getting Episode Comments Failed!';
+    }
+  }
+
+  Future<void> addNewComment(String text, String episodeId) async {
+    try {
+      await _client.post(
+        '/comments',
+        data: {
+          'text': text,
+          'episodeId': episodeId,
+        },
+      );
+    } on DioError catch (e) {
+      throw e.response?.data['errors'][0] ?? 'Failed to post new comment!';
     }
   }
 }
