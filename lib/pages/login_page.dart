@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tv_shows/pages/shows_page.dart';
+import 'package:tv_shows/state/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -126,26 +128,45 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 32),
-            TextButton(
-              onPressed: _isLoginAllowed()
-                  ? () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => const ShowsPage()));
-                    }
-                  : null,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text('LOG IN'),
-                ],
-              ),
-              style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context)
-                    .primaryColor
-                    .withAlpha(_isLoginAllowed() ? 255 : 100),
-                primary: Colors.white,
-                padding: const EdgeInsets.all(16),
-              ),
+            Consumer<AuthProvider>(
+              builder: (context, provider, child) {
+                if (provider.loggingIn) {
+                  return const CircularProgressIndicator();
+                }
+                return TextButton(
+                  onPressed: _isLoginAllowed()
+                      ? () async {
+                          try {
+                            await Provider.of<AuthProvider>(context,
+                                    listen: false)
+                                .login(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (_) => const ShowsPage()));
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(e.toString())));
+                          }
+                        }
+                      : null,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text('LOG IN'),
+                    ],
+                  ),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context)
+                        .primaryColor
+                        .withAlpha(_isLoginAllowed() ? 255 : 100),
+                    primary: Colors.white,
+                    padding: const EdgeInsets.all(16),
+                  ),
+                );
+              },
             ),
           ],
         ),
