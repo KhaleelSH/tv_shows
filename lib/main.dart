@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:tv_shows/data/api_data_client.dart';
 import 'package:tv_shows/data/data_client.dart';
 import 'package:tv_shows/data/local_data_client.dart';
-import 'package:tv_shows/pages/initial_page.dart';
 import 'package:tv_shows/state/auth_provider.dart';
 import 'package:tv_shows/state/shows_provider.dart';
+import 'package:tv_shows/utils/app_routes.dart';
 import 'package:tv_shows/utils/app_theme.dart';
 
 void main() {
@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'TV Shows',
         theme: AppTheme.from(theme: AppThemeLight()),
-        home: const InitialPage(),
+        initialRoute: AppRoutes.initial,
+        onGenerateRoute: AppRoutes.generateRoutes,
       ),
     );
   }
