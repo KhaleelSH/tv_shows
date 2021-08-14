@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tv_shows/models/episode.dart';
 
 class EpisodeTile extends StatelessWidget {
-  const EpisodeTile({Key? key, required this.onTap}) : super(key: key);
+  const EpisodeTile({
+    Key? key,
+    required this.episode,
+    required this.onTap,
+  }) : super(key: key);
 
+  final Episode episode;
   final VoidCallback onTap;
 
   @override
@@ -13,7 +19,7 @@ class EpisodeTile extends StatelessWidget {
       title: Row(
         children: [
           Text(
-            'S02 E06',
+            'S${episode.seasonNumber.padLeft(2, '0')} E${episode.episodeNumber.padLeft(2, '0')}',
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: 16,
@@ -21,9 +27,13 @@ class EpisodeTile extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          const Text(
-            'Episode Title',
-            style: TextStyle(fontSize: 16),
+          Flexible(
+            child: Text(
+              (episode.title?.isEmpty ?? true) ? 'No Title' : episode.title!,
+              style: const TextStyle(fontSize: 16),
+              softWrap: false,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),

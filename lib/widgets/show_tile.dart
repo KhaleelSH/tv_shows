@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:tv_shows/models/show.dart';
 import 'package:tv_shows/utils/app_colors.dart';
 
 class ShowTile extends StatelessWidget {
-  const ShowTile({Key? key, required this.onTap, required this.name})
-      : super(key: key);
+  const ShowTile({
+    Key? key,
+    required this.onTap,
+    required this.show,
+  }) : super(key: key);
 
+  final Show show;
   final VoidCallback onTap;
-  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +31,9 @@ class ShowTile extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: Hero(
-                tag: 'show_image_$name',
+                tag: 'show_image_${show.title}',
                 child: Image.network(
-                  'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
+                  show.imageUrl,
                   width: 64,
                   height: 90,
                   errorBuilder: (context, error, stackTrace) {
@@ -45,7 +49,7 @@ class ShowTile extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           Text(
-            'The Hitman\'s Bodyguard',
+            show.title,
             style: Theme.of(context).textTheme.headline3,
           ),
         ],
