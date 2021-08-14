@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:tv_shows/models/episode.dart';
 import 'package:tv_shows/pages/comments_page.dart';
 import 'package:tv_shows/utils/tv_shows_icons.dart';
 import 'package:tv_shows/widgets/back_button_app_bar.dart';
 
 class EpisodeDetailsPage extends StatelessWidget {
-  const EpisodeDetailsPage({Key? key}) : super(key: key);
+  const EpisodeDetailsPage({
+    Key? key,
+    required this.episode,
+  }) : super(key: key);
+
+  final Episode episode;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class EpisodeDetailsPage extends StatelessWidget {
                 Stack(
                   children: [
                     Image.network(
-                      'https://i.ytimg.com/vi/MJuFdpVCcsY/movieposter_en.jpg',
+                      episode.imageUrl!,
                       height: MediaQuery.of(context).size.height / 2,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -53,11 +59,13 @@ class EpisodeDetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Garden Party',
+                        (episode.title?.isEmpty ?? true)
+                            ? 'No Title'
+                            : episode.title!,
                         style: Theme.of(context).textTheme.headline1,
                       ),
                       Text(
-                        'S02 E06',
+                        'S${episode.seasonNumber.padLeft(2, '0')} E${episode.episodeNumber.padLeft(2, '0')}',
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: 16,
@@ -66,7 +74,9 @@ class EpisodeDetailsPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Andy claims to be throwing a garden party at Dwight\'s farm to impress Robert California, but he\'s really doing it to win the approval of his parents, who appear to favor his younger brother.',
+                        (episode.description?.isEmpty ?? true)
+                            ? 'No Description'
+                            : episode.description!,
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       const SizedBox(height: 32),
