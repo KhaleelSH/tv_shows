@@ -2,6 +2,7 @@ import 'dart:convert' show json;
 
 import 'package:dio/dio.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
+import 'package:tv_shows/models/comment.dart';
 import 'package:tv_shows/models/episode.dart';
 import 'package:tv_shows/models/show.dart';
 
@@ -85,6 +86,16 @@ class ApiDataClient {
       return _episodes;
     } on DioError catch (e) {
       throw e.response?.data['errors'][0] ?? 'Getting Show Episodes Failed!';
+    }
+  }
+
+  Future<List<Comment>> getEpisodeComments(String episodeId) async {
+    try {
+      Response response =
+          await _client.get('/episodes/$episodeId/comments');
+      return Comment.fromJsonList(response.data['data']);
+    } on DioError catch (e) {
+      throw e.response?.data['errors'][0] ?? 'Getting Episode Comments Failed!';
     }
   }
 }
