@@ -97,8 +97,8 @@ class EpisodeDetailsPage extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         child: ListTile(
           onTap: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const CommentsPage()));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => CommentsPage(episodeId: episode.id)));
           },
           contentPadding: const EdgeInsets.symmetric(horizontal: 24),
           title: Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows/data/api_data_client.dart';
+import 'package:tv_shows/models/comment.dart';
 import 'package:tv_shows/models/episode.dart';
 import 'package:tv_shows/models/show.dart';
 
@@ -88,6 +89,14 @@ class ShowsProvider extends ChangeNotifier {
     } finally {
       _loadingCurrentSelectedShowEpisodes = false;
       notifyListeners();
+    }
+  }
+
+  Future<List<Comment>> getEpisodeComments({required String episodeId}) async {
+    try {
+      return await client.getEpisodeComments(episodeId);
+    } catch (e) {
+      rethrow;
     }
   }
 }

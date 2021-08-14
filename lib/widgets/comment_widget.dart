@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tv_shows/models/comment.dart';
 import 'package:tv_shows/utils/app_colors.dart';
 
 class CommentWidget extends StatelessWidget {
-  const CommentWidget({Key? key}) : super(key: key);
+  const CommentWidget({Key? key, required this.comment}) : super(key: key);
+
+  final Comment comment;
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +15,12 @@ class CommentWidget extends StatelessWidget {
         const SizedBox(width: 8),
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Text(
-                    'Andrei',
+                    comment.username,
                     style: Theme.of(context)
                         .textTheme
                         .button!
@@ -34,7 +38,7 @@ class CommentWidget extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Well, this episode really sucks. Such a time wasting. Well, this episode really sucks. Such a time wasting.',
+                comment.comment,
                 style: TextStyle(
                   color: Color(AppColors.darkGrey()),
                   height: 1.5,
