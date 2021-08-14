@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:loggy/loggy.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_shows/data/api_data_client.dart';
+import 'package:tv_shows/data/data_client.dart';
+import 'package:tv_shows/data/local_data_client.dart';
 import 'package:tv_shows/pages/login_page.dart';
 import 'package:tv_shows/state/auth_provider.dart';
 import 'package:tv_shows/state/shows_provider.dart';
@@ -21,16 +23,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<ApiDataClient>(
-          create: (_) => ApiDataClient(),
+        Provider<DataClient>(
+          create: (_) => DataClient(
+            api: ApiDataClient(),
+            local: LocalDataClient(),
+          ),
         ),
-        ChangeNotifierProxyProvider<ApiDataClient, AuthProvider>(
-          create: (context) => AuthProvider(context.read<ApiDataClient>()),
-          update: (_, ApiDataClient client, AuthProvider? auth) => auth!,
+        ChangeNotifierProxyProvider<DataClient, AuthProvider>(
+          create: (context) => AuthProvider(context.read<DataClient>()),
+          update: (_, DataClient client, AuthProvider? auth) => auth!,
         ),
-        ChangeNotifierProxyProvider<ApiDataClient, ShowsProvider>(
-          create: (context) => ShowsProvider(context.read<ApiDataClient>()),
-          update: (_, ApiDataClient client, ShowsProvider? auth) => auth!,
+        ChangeNotifierProxyProvider<DataClient, ShowsProvider>(
+          create: (context) => ShowsProvider(context.read<DataClient>()),
+          update: (_, DataClient client, ShowsProvider? auth) => auth!,
         ),
       ],
       child: MaterialApp(

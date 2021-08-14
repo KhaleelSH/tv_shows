@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows/data/api_data_client.dart';
+import 'package:tv_shows/data/data_client.dart';
 
 class AuthProvider extends ChangeNotifier {
-  final ApiDataClient client;
+  final DataClient client;
 
   AuthProvider(this.client);
 
@@ -17,8 +17,8 @@ class AuthProvider extends ChangeNotifier {
     try {
       _loggingIn = true;
       notifyListeners();
-      final token = await client.login(email, password);
-      client.setAuthorizationHeader(token);
+      final token = await client.api.login(email, password);
+      client.api.setAuthorizationHeader(token);
     } catch (e) {
       rethrow;
     } finally {
@@ -29,7 +29,7 @@ class AuthProvider extends ChangeNotifier {
 
   void logout() async {
     try {
-      client.clearAuthorizationHeader();
+      client.api.clearAuthorizationHeader();
     } catch (e) {
       rethrow;
     }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tv_shows/data/api_data_client.dart';
+import 'package:tv_shows/data/data_client.dart';
 import 'package:tv_shows/models/comment.dart';
 import 'package:tv_shows/models/episode.dart';
 import 'package:tv_shows/models/show.dart';
 
 class ShowsProvider extends ChangeNotifier {
-  final ApiDataClient client;
+  final DataClient client;
 
   ShowsProvider(this.client);
 
@@ -40,7 +40,7 @@ class ShowsProvider extends ChangeNotifier {
         _loadingShows = true;
         notifyListeners();
       }
-      _shows = await client.getShows();
+      _shows = await client.api.getShows();
     } catch (e) {
       rethrow;
     } finally {
@@ -67,7 +67,7 @@ class ShowsProvider extends ChangeNotifier {
         notifyListeners();
       }
       _currentSelectedShowDescription =
-          await client.getShowDescription(currentSelectedShow!.id);
+          await client.api.getShowDescription(currentSelectedShow!.id);
     } catch (e) {
       rethrow;
     } finally {
@@ -83,7 +83,7 @@ class ShowsProvider extends ChangeNotifier {
         notifyListeners();
       }
       _currentSelectedShowEpisodes =
-          await client.getShowEpisodes(currentSelectedShow!.id);
+          await client.api.getShowEpisodes(currentSelectedShow!.id);
     } catch (e) {
       rethrow;
     } finally {
@@ -94,7 +94,7 @@ class ShowsProvider extends ChangeNotifier {
 
   Future<List<Comment>> getEpisodeComments({required String episodeId}) async {
     try {
-      return await client.getEpisodeComments(episodeId);
+      return await client.api.getEpisodeComments(episodeId);
     } catch (e) {
       rethrow;
     }
@@ -103,7 +103,7 @@ class ShowsProvider extends ChangeNotifier {
   Future<void> addNewComment(
       {required String text, required String episodeId}) async {
     try {
-      return await client.addNewComment(text, episodeId);
+      return await client.api.addNewComment(text, episodeId);
     } catch (e) {
       rethrow;
     }
@@ -111,7 +111,7 @@ class ShowsProvider extends ChangeNotifier {
 
   Future<String> uploadImage({required String filePath}) async {
     try {
-      return await client.uploadImage(filePath);
+      return await client.api.uploadImage(filePath);
     } catch (e) {
       rethrow;
     }
@@ -126,7 +126,7 @@ class ShowsProvider extends ChangeNotifier {
     required String seasonNumber,
   }) async {
     try {
-      return await client.addNewEpisode(
+      return await client.api.addNewEpisode(
           showId, mediaId, title, description, episodeNumber, seasonNumber);
     } catch (e) {
       rethrow;
