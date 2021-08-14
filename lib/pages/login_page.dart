@@ -140,11 +140,10 @@ class _LoginPageState extends State<LoginPage> {
                           _emailNode.unfocus();
                           _passwordNode.unfocus();
                           try {
-                            await Provider.of<AuthProvider>(context,
-                                    listen: false)
-                                .login(
+                            await provider.login(
                               email: _emailController.text,
                               password: _passwordController.text,
+                              rememberToken: _rememberMe,
                             );
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
