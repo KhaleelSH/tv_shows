@@ -16,6 +16,8 @@ abstract class AppTheme {
 
   AppBarTheme get appBarTheme;
 
+  SnackBarThemeData get snackBarTheme;
+
   static ThemeData from({required AppTheme theme}) {
     return ThemeData(
       primarySwatch: theme.primarySwatch,
@@ -29,6 +31,7 @@ abstract class AppTheme {
       appBarTheme: theme.appBarTheme,
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: theme.primarySwatch),
+      snackBarTheme: theme.snackBarTheme,
     );
   }
 }
@@ -104,5 +107,10 @@ class AppThemeLight extends AppTheme {
   AppBarTheme get appBarTheme => const AppBarTheme(
         color: Colors.transparent,
         elevation: 0,
+      );
+
+  @override
+  SnackBarThemeData get snackBarTheme => const SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
       );
 }
