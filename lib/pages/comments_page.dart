@@ -151,11 +151,12 @@ class _CommentsPageState extends State<CommentsPage> {
 
   Future<void> postComment() async {
     try {
+      final comment = _commentController.text;
       _commentNode.unfocus();
-      await Provider.of<ShowsProvider>(context, listen: false).addNewComment(
-          text: _commentController.text, episodeId: widget.episodeId);
-      getComments();
       _commentController.clear();
+      await Provider.of<ShowsProvider>(context, listen: false)
+          .addNewComment(text: comment, episodeId: widget.episodeId);
+      getComments();
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
