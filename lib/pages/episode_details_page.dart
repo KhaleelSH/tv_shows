@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows/models/episode.dart';
-import 'package:tv_shows/pages/comments_page.dart';
+import 'package:tv_shows/utils/app_routes.dart';
 import 'package:tv_shows/utils/tv_shows_icons.dart';
 import 'package:tv_shows/widgets/back_button_app_bar.dart';
 
@@ -97,8 +97,8 @@ class EpisodeDetailsPage extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         child: ListTile(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => CommentsPage(episodeId: episode.id)));
+            Navigator.of(context)
+                .pushNamed(AppRoutes.comments, arguments: episode.id);
           },
           contentPadding: const EdgeInsets.symmetric(horizontal: 24),
           title: Row(

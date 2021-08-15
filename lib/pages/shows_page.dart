@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tv_shows/pages/login_page.dart';
-import 'package:tv_shows/pages/show_details_page.dart';
 import 'package:tv_shows/state/auth_provider.dart';
 import 'package:tv_shows/state/shows_provider.dart';
+import 'package:tv_shows/utils/app_routes.dart';
 import 'package:tv_shows/widgets/show_tile.dart';
 
 class ShowsPage extends StatefulWidget {
@@ -35,9 +34,8 @@ class _ShowsPageState extends State<ShowsPage> {
           IconButton(
             onPressed: () {
               Provider.of<AuthProvider>(context, listen: false).logout();
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (_) => const LoginPage()),
-                  (route) => false);
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(AppRoutes.login, (route) => false);
             },
             icon: const Icon(Icons.exit_to_app),
             tooltip: 'Logout',
@@ -60,8 +58,7 @@ class _ShowsPageState extends State<ShowsPage> {
                 show: provider.shows[index],
                 onTap: () async {
                   provider.setCurrentSelectedShow(provider.shows[index]);
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => const ShowDetailsPage()));
+                  Navigator.of(context).pushNamed(AppRoutes.showDetails);
                 },
               );
             },

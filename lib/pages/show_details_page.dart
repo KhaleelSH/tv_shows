@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tv_shows/pages/add_episode_page.dart';
-import 'package:tv_shows/pages/episode_details_page.dart';
 import 'package:tv_shows/state/shows_provider.dart';
 import 'package:tv_shows/utils/app_colors.dart';
+import 'package:tv_shows/utils/app_routes.dart';
 import 'package:tv_shows/widgets/adaptive_refresh_indicator.dart';
 import 'package:tv_shows/widgets/back_button_app_bar.dart';
 import 'package:tv_shows/widgets/episode_tile.dart';
@@ -167,11 +166,9 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                                     EpisodeTile(
                                       episode: episode,
                                       onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    EpisodeDetailsPage(
-                                                        episode: episode)));
+                                        Navigator.of(context).pushNamed(
+                                            AppRoutes.episodeDetails,
+                                            arguments: episode);
                                       },
                                     ),
                               ],
@@ -195,10 +192,8 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => AddEpisodePage(show: provider.currentSelectedShow!),
-            fullscreenDialog: true,
-          ));
+          Navigator.of(context).pushNamed(AppRoutes.addEpisode,
+              arguments: provider.currentSelectedShow!);
         },
         child: const Icon(
           Icons.add,

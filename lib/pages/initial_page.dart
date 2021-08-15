@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tv_shows/pages/login_page.dart';
-import 'package:tv_shows/pages/shows_page.dart';
 import 'package:tv_shows/state/auth_provider.dart';
+import 'package:tv_shows/utils/app_routes.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({Key? key}) : super(key: key);
@@ -18,11 +17,9 @@ class _InitialPageState extends State<InitialPage> {
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
       if (await Provider.of<AuthProvider>(context, listen: false)
           .useRememberedToken()) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const ShowsPage()));
+        Navigator.of(context).pushReplacementNamed(AppRoutes.shows);
       } else {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const LoginPage()));
+        Navigator.of(context).pushReplacementNamed(AppRoutes.login);
       }
     });
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tv_shows/pages/shows_page.dart';
 import 'package:tv_shows/state/auth_provider.dart';
+import 'package:tv_shows/utils/app_routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -145,9 +145,8 @@ class _LoginPageState extends State<LoginPage> {
                               password: _passwordController.text,
                               rememberToken: _rememberMe,
                             );
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (_) => const ShowsPage()));
+                            Navigator.of(context)
+                                .pushReplacementNamed(AppRoutes.shows);
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text(e.toString())));
