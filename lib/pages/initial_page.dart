@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:tv_shows/state/auth_provider.dart';
 import 'package:tv_shows/utils/app_routes.dart';
 
+/// [InitialPage] checks if there a remembered token and navigates
+/// to the correct page based on that.
+/// Usually it appears for some milliseconds.
 class InitialPage extends StatefulWidget {
   const InitialPage({Key? key}) : super(key: key);
 

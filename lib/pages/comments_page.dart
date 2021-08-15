@@ -57,29 +57,9 @@ class _CommentsPageState extends State<CommentsPage> {
       body: Column(
         children: [
           if (comments == null)
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset('assets/images/image_placeholder_comments.png'),
-                  const CircularProgressIndicator.adaptive(),
-                ],
-              ),
-            )
+            _loadingCommentsWidget()
           else if (comments!.isEmpty)
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset('assets/images/image_placeholder_comments.png'),
-                  const Text(
-                    'Sorry, we don’t have comments yet.\nBe first who will write a review.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(height: 1.5),
-                  ),
-                ],
-              ),
-            )
+            _noCommentsWidget()
           else
             Expanded(
               child: SingleChildScrollView(
@@ -114,7 +94,7 @@ class _CommentsPageState extends State<CommentsPage> {
                       focusNode: _commentNode,
                       textInputAction: TextInputAction.send,
                       onFieldSubmitted: (String value) {
-                        postComment();
+                        postNewComment();
                       },
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(
@@ -134,7 +114,7 @@ class _CommentsPageState extends State<CommentsPage> {
                                 color: Theme.of(context).primaryColor),
                           ),
                           onTap: () {
-                            postComment();
+                            postNewComment();
                           },
                         ),
                       ),
@@ -149,7 +129,35 @@ class _CommentsPageState extends State<CommentsPage> {
     );
   }
 
-  Future<void> postComment() async {
+  Widget _loadingCommentsWidget() {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Image.asset('assets/images/image_placeholder_comments.png'),
+          const CircularProgressIndicator.adaptive(),
+        ],
+      ),
+    );
+  }
+
+  Widget _noCommentsWidget() {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Image.asset('assets/images/image_placeholder_comments.png'),
+          const Text(
+            'Sorry, we don’t have comments yet.\nBe first who will write a review.',
+            textAlign: TextAlign.center,
+            style: TextStyle(height: 1.5),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> postNewComment() async {
     try {
       final comment = _commentController.text;
       _commentNode.unfocus();
