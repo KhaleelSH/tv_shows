@@ -71,8 +71,10 @@ class ShowsProvider extends ChangeNotifier {
         _loadingCurrentSelectedShowDescription = true;
         notifyListeners();
       }
-      _currentSelectedShowDescription =
-          await client.api.getShowDescription(currentSelectedShow!.id);
+      if (currentSelectedShow != null) {
+        _currentSelectedShowDescription =
+            await client.api.getShowDescription(currentSelectedShow!.id);
+      }
     } catch (e) {
       rethrow;
     } finally {
@@ -87,8 +89,10 @@ class ShowsProvider extends ChangeNotifier {
         _loadingCurrentSelectedShowEpisodes = true;
         notifyListeners();
       }
-      _currentSelectedShowEpisodes =
-          await client.api.getShowEpisodes(currentSelectedShow!.id);
+      if (currentSelectedShow != null) {
+        _currentSelectedShowEpisodes =
+            await client.api.getShowEpisodes(currentSelectedShow!.id);
+      }
     } catch (e) {
       rethrow;
     } finally {

@@ -90,91 +90,80 @@ class _ShowDetailsPageState extends State<ShowDetailsPage> {
                           ],
                         ),
                       ),
-                      Consumer<ShowsProvider>(
-                        builder: (context, provider, child) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 24),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              provider.currentSelectedShow!.title,
+                              style: Theme.of(context).textTheme.headline1,
+                            ),
+                            const SizedBox(height: 16),
+                            if (provider.loadingCurrentSelectedShowDescription)
+                              const Center(
+                                  child: CircularProgressIndicator.adaptive())
+                            else
+                              Text(
+                                provider.currentSelectedShowDescription ??
+                                    'No description',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            const SizedBox(height: 32),
+                            Row(
                               children: <Widget>[
                                 Text(
-                                  provider.currentSelectedShow!.title,
-                                  style: Theme.of(context).textTheme.headline1,
+                                  'Episodes',
+                                  style: Theme.of(context).textTheme.headline2,
                                 ),
-                                const SizedBox(height: 16),
-                                if (provider
-                                    .loadingCurrentSelectedShowDescription)
-                                  const Center(
-                                      child:
-                                          CircularProgressIndicator.adaptive())
-                                else
+                                const SizedBox(width: 8),
+                                if (!provider
+                                    .loadingCurrentSelectedShowEpisodes)
                                   Text(
-                                    provider.currentSelectedShowDescription ??
-                                        'No description',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
+                                    provider.currentSelectedShowEpisodes.length
+                                        .toString(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline2!
+                                        .copyWith(
+                                            color:
+                                                Color(AppColors.lightGrey())),
                                   ),
-                                const SizedBox(height: 32),
-                                Row(
-                                  children: <Widget>[
-                                    Text(
-                                      'Episodes',
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
-                                    ),
-                                    const SizedBox(width: 8),
-                                    if (!provider
-                                        .loadingCurrentSelectedShowEpisodes)
-                                      Text(
-                                        provider
-                                            .currentSelectedShowEpisodes.length
-                                            .toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline2!
-                                            .copyWith(
-                                                color: Color(
-                                                    AppColors.lightGrey())),
-                                      ),
-                                  ],
-                                ),
-                                if (provider.loadingCurrentSelectedShowEpisodes)
-                                  const Center(
-                                      child:
-                                          CircularProgressIndicator.adaptive())
-                                else if (provider
-                                    .currentSelectedShowEpisodes.isEmpty)
-                                  Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Image.asset(
-                                            'assets/images/image_placeholder_episodes.png'),
-                                        const SizedBox(height: 16),
-                                        const Text(
-                                          'Sorry, we don’t have episodes yet.',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(height: 1.5),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                else
-                                  for (final episode
-                                      in provider.currentSelectedShowEpisodes)
-                                    EpisodeTile(
-                                      episode: episode,
-                                      onTap: () {
-                                        Navigator.of(context).pushNamed(
-                                            AppRoutes.episodeDetails,
-                                            arguments: episode);
-                                      },
-                                    ),
                               ],
                             ),
-                          );
-                        },
+                            if (provider.loadingCurrentSelectedShowEpisodes)
+                              const Center(
+                                  child: CircularProgressIndicator.adaptive())
+                            else if (provider
+                                .currentSelectedShowEpisodes.isEmpty)
+                              Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Image.asset(
+                                        'assets/images/image_placeholder_episodes.png'),
+                                    const SizedBox(height: 16),
+                                    const Text(
+                                      'Sorry, we don’t have episodes yet.',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(height: 1.5),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            else
+                              for (final episode
+                                  in provider.currentSelectedShowEpisodes)
+                                EpisodeTile(
+                                  episode: episode,
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                        AppRoutes.episodeDetails,
+                                        arguments: episode);
+                                  },
+                                ),
+                          ],
+                        ),
                       ),
                     ],
                   );
