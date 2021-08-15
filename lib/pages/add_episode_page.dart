@@ -6,10 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_shows/models/show.dart';
 import 'package:tv_shows/state/shows_provider.dart';
-import 'package:tv_shows/utils/app_colors.dart';
-
-const int _kDefaultSeasons = 30;
-const int _kDefaultEpisodes = 99;
+import 'package:tv_shows/widgets/season_episode_picker.dart';
 
 class AddEpisodePage extends StatefulWidget {
   const AddEpisodePage({
@@ -124,43 +121,13 @@ class _AddEpisodePageState extends State<AddEpisodePage> {
                 key: _form,
                 child: Column(
                   children: [
-                    GestureDetector(
-                      onTap: _showSeasonAndEpisodePicker,
-                      child: Container(
-                        color: Colors.white,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Season & Episode',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1!
-                                      .copyWith(
-                                          color: Color(AppColors.lightGrey())),
-                                ),
-                                Text(
-                                  'S$_season E$_episode',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .copyWith(
-                                          color:
-                                              Theme.of(context).primaryColor),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            Divider(
-                              thickness: 1,
-                              color: Color(AppColors.lightGrey()),
-                            ),
-                          ],
-                        ),
-                      ),
+                    SeasonAndEpisodePicker(
+                      onChangeEpisode: (episode) {
+                        setState(() => _episode = episode);
+                      },
+                      onChangeSeason: (int season) {
+                        setState(() => _season = season);
+                      },
                     ),
                     TextFormField(
                       controller: _titleController,
@@ -242,59 +209,6 @@ class _AddEpisodePageState extends State<AddEpisodePage> {
         _image = File(pickedFile.path);
       }
     });
-  }
-
-  void _showSeasonAndEpisodePicker() {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return SizedBox(
-          height: MediaQuery.of(context).size.height / 4,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: CupertinoPicker(
-                  scrollController:
-                      FixedExtentScrollController(initialItem: _season - 1),
-                  itemExtent: 32,
-                  backgroundColor: Colors.white,
-                  onSelectedItemChanged: (int i) {
-                    setState(() => _season = i + 1);
-                  },
-                  children: List<Widget>.generate(
-                    _kDefaultSeasons,
-                    (int i) {
-                      return Center(
-                        child: Text('S${(i + 1).toString().padLeft(2, '0')}'),
-                      );
-                    },
-                  ),
-                ),
-              ),
-              Expanded(
-                child: CupertinoPicker(
-                  scrollController:
-                      FixedExtentScrollController(initialItem: _episode - 1),
-                  itemExtent: 32,
-                  backgroundColor: Colors.white,
-                  onSelectedItemChanged: (int i) {
-                    setState(() => _episode = i + 1);
-                  },
-                  children: List<Widget>.generate(
-                    _kDefaultEpisodes,
-                    (int i) {
-                      return Center(
-                        child: Text('E${(i + 1).toString().padLeft(2, '0')}'),
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
   }
 
   Future<void> addNewEpisode() async {
