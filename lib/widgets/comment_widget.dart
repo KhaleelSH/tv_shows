@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:tv_shows/models/comment.dart';
 import 'package:tv_shows/utils/app_colors.dart';
@@ -11,7 +12,9 @@ class CommentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset('assets/images/image_placeholder_user_1.png'),
+        // Shows random profile image from a set of 3 images.
+        Image.asset('assets/images/image_placeholder_user'
+            '_${math.Random().nextInt(3) + 1}.png'),
         const SizedBox(width: 8),
         Expanded(
           child: Column(
