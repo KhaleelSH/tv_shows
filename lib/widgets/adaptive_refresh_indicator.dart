@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 
 const double _kActivityIndicatorRadius = 14.0;
 
+/// [AdaptiveRefreshIndicator] shows different refresh indicators for
+/// different operating systems, ex: Material indicator for Android
+/// and Cupertino indicator for iOS.
 class AdaptiveRefreshIndicator extends StatelessWidget {
   const AdaptiveRefreshIndicator({
     Key? key,
@@ -61,7 +64,7 @@ class AdaptiveRefreshIndicator extends StatelessWidget {
   }
 
   // This code is from [refresh.dart] and I copied it here to fix issue
-  // with iPhone notch padding when over scrolled to refresh.
+  // with iPhone notch padding when the screen is over scrolled to refresh.
   static Widget _buildIndicatorForRefreshState(
       RefreshIndicatorMode refreshState,
       double radius,

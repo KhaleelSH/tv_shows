@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+/// [BackButtonAppBar] is an AppBar that only contains a back button.
 class BackButtonAppBar extends StatelessWidget {
   const BackButtonAppBar({Key? key}) : super(key: key);
 

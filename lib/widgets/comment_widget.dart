@@ -27,6 +27,7 @@ class CommentWidget extends StatelessWidget {
                         .copyWith(color: Theme.of(context).primaryColor),
                   ),
                   const Spacer(),
+                  // There is no time value coming back from the server.
                   Text(
                     '5min',
                     style: TextStyle(

@@ -36,6 +36,9 @@ class ShowsProvider extends ChangeNotifier {
 
   Future<void> getShows({bool showLoading = true}) async {
     try {
+      // When showLoading is false, we don't show loading widgets,
+      // ex: used in refresh indicators
+      // so we don't show CircularProgressIndicator.
       if (showLoading) {
         _loadingShows = true;
         notifyListeners();
@@ -54,6 +57,8 @@ class ShowsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// [clearCurrentSelectedShow] clears current selected show data.
+  /// This improves performance when the user navigates to ShowDetailsPage.
   void clearCurrentSelectedShow() {
     _currentSelectedShow = null;
     _currentSelectedShowDescription = null;
