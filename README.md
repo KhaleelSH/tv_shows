@@ -40,3 +40,4 @@ A simple app that helps you keep track of shows and episodes you watched.
     - Wrong login credentials error.
     - Loading data widgets.
     - No data (ex: shows, episodes, comments) to display.
+- For best performance, run the app in Release Mode, ex: `flutter run --release`
