@@ -27,6 +27,7 @@ class Episode {
 
   Map<String, dynamic> toJson() => _$EpisodeToJson(this);
 
+  /// [copyWithFixedImageUrl] Copy [Episode] object with correct Image URL.
   Episode copyWithFixedImageUrl({required String imageUrl}) {
     return Episode(
       id: id,

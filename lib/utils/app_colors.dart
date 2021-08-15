@@ -14,6 +14,8 @@ enum AppColors {
   mystic,
 }
 
+// The call() method allows us to call methods on objects
+// as if the object itself is a method, ex: AppColors.darkGrey().
 extension AppColorsExtension on AppColors {
   int call() {
     switch (this) {

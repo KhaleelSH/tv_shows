@@ -21,6 +21,7 @@ class Show {
 
   Map<String, dynamic> toJson() => _$ShowToJson(this);
 
+  /// [copyWithFixedImageUrl] Copy [Show] object with correct Image URL.
   Show copyWithFixedImageUrl({required String imageUrl}) {
     return Show(
       id: id,

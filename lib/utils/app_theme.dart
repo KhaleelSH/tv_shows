@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tv_shows/utils/app_colors.dart';
 
+/// [AppTheme] is an abstract class which should be extended by different
+/// app themes, ex: AppThemeLight or AppThemeDark.
 abstract class AppTheme {
   MaterialColor get primarySwatch;
 
@@ -37,6 +39,7 @@ abstract class AppTheme {
 }
 
 class AppThemeLight extends AppTheme {
+  // This getter defines the different values of ColorSwatch.
   Map<int, Color> get _color => {
         50: Color(AppColors.primaryColor()).withOpacity(0.1),
         100: Color(AppColors.primaryColor()).withOpacity(0.2),

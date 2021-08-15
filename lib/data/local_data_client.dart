@@ -1,5 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+/// [LocalDataClient] is used to store JWT in and retrieve it
+/// from SecureStorage.
 class LocalDataClient {
   final FlutterSecureStorage storage = const FlutterSecureStorage();
 

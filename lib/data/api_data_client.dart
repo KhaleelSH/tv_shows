@@ -6,8 +6,10 @@ import 'package:tv_shows/models/comment.dart';
 import 'package:tv_shows/models/episode.dart';
 import 'package:tv_shows/models/show.dart';
 
+/// [ApiDataClient] handles all network calls and API communication.
 class ApiDataClient {
   ApiDataClient() {
+    // Logging all http requests/responses.
     _client.interceptors.add(LoggyDioInterceptor());
   }
 

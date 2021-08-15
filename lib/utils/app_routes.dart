@@ -17,6 +17,7 @@ class AppRoutes {
   static const String comments = 'comments';
   static const String addEpisode = 'addEpisode';
 
+  /// [generateRoutes] defines app routes and passes the correct arguments.
   static Route<dynamic> generateRoutes(RouteSettings routeSettings) {
     final dynamic args = routeSettings.arguments;
     return MaterialPageRoute(builder: (_) {
