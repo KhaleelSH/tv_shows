@@ -22,19 +22,19 @@ class AppRoutes {
     final dynamic args = routeSettings.arguments;
     return MaterialPageRoute(builder: (_) {
       switch (routeSettings.name) {
-        case 'initial':
+        case initial:
           return const InitialPage();
-        case 'login':
+        case login:
           return const LoginPage();
-        case 'shows':
+        case shows:
           return const ShowsPage();
-        case 'showDetails':
+        case showDetails:
           return const ShowDetailsPage();
-        case 'episodeDetails':
+        case episodeDetails:
           return EpisodeDetailsPage(episode: args);
-        case 'comments':
+        case comments:
           return CommentsPage(episodeId: args);
-        case 'addEpisode':
+        case addEpisode:
           return AddEpisodePage(show: args);
         default:
           return const LoginPage();
